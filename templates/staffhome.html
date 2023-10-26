@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stafflogin</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}  
+         {% if messages %}  
+               {% for message in messages %}  
+                    <p><h4>{{ message }}</h4></p>  
+               {% endfor %}  
+         {% endif %}  
+      {% endwith %}  
+    <form action="/update" method="POST">
+        <input type="text" placeholder="name" name="name">
+        <input type="number" placeholder="mobile" name="mb">
+        <input type="email" placeholder="email" name="email">
+        <input type="text" placeholder="address" name="address">
+        <input type="number" placeholder="initial amount to deposit" name="initial_dep">
+        <input type="submit" value="Submit">
+    </form>
+    
+</html>

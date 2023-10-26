@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ac detail</title>
+    
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}  
+         {% if messages %}  
+               {% for message in messages %}  
+                    <p><h4>{{ message }}</h4></p>  
+               {% endfor %}  
+         {% endif %}  
+      {% endwith %}  
+    <form action="/getdetails" method="POST">
+        <label for="acNoInput">Account Number:</label>
+        <input type="number" placeholder="Account Number" name="ac_no" id="acNoInput">
+        <h4><p id="nameResult" color="red"></p></h4>
+        <input type="submit" value="GET DETAILS">
+    </form>
+    <script>
+        
+        const id = document.getElementById('acNoInput').value;
+        const nameResult = document.getElementById('nameResult');
+        acNoInput.addEventListener('blur', () => {
+        const id =acNoInput.value;
+        
+        
+        // Make a Fetch API request to the backend
+        fetch(`http://127.0.0.1:5000/api/getname?ac=${id}`)
+            .then(response => response.json())
+            .then(data => {
+                const nameResult = document.getElementById('nameResult');
+                if (data.name) {
+                    nameResult.textContent = `Name: ${data.name}`;
+                } else {
+                    nameResult.textContent = 'A/C invalid';
+                }
+            })
+            .catch(error => console.error(error));
+    });
+</script>
+</body>
+</html>

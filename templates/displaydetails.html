@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DETAILS</title>
+</head>
+<body>
+    <table border="1px">
+        <tr><th>ACCOUNT NO:</th><td>{{ac}}</td></tr>
+        <tr><th>CUST ID:</th><td>{{data.cust_id}}</td></tr>
+        <tr><th>NAME:</th><td>{{data.name}}</td></tr>
+        <tr><th>MOBILE:</th><td>{{data.phone}}</td></tr>
+        <tr><th>EMAIL:</th><td>{{data.email}}</td></tr>
+        <tr><th>ADDRESS:</th><td>{{data.address}}</td></tr>
+        <tr><th>BALANCE:</th><td>{{data.initial_dep}}</td></tr>
+        <tr><th>STATEMENT DOWNLOAD</th><td><a href="http://127.0.0.1:5000/download/{{data.cust_id}}">DOWNLOAD</a></td></tr>
+
+
+        
+    </table>
+</body>
+</html>

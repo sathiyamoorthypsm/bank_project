@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>withdraw</title>
+</head>
+<body>
+    <form action="/withdraw" method = "POST">
+    <input type="number" placeholder="ac_no" name="ac_no" id="acNoInput">
+    <h4><p id="nameResult" color="red"></p></h4>
+    <input type="number" placeholder="amount" name="amount">
+    <input type="submit">
+</form>
+<script>
+    const id = document.getElementById('acNoInput').value;
+    const nameResult = document.getElementById('nameResult');
+    acNoInput.addEventListener('blur', () => {
+    const id =acNoInput.value;
+    // Make a Fetch API request to the backend
+    fetch(`http://127.0.0.1:5000/api/getname?ac=${id}`)
+        .then(response => response.json())
+        .then(data => {
+            const nameResult = document.getElementById('nameResult');
+            if (data.name) {
+                nameResult.textContent = `Name: ${data.name}`;
+            } else {
+                nameResult.textContent = 'A/C invalid';
+            }
+        })
+        .catch(error => console.error(error));
+});
+</script>
+</body>
+</html>

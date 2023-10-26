@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRANSFER</title>
+</head>
+<body>
+    <form action="/transfer" method="POST">
+        <input type="number" placeholder="from ac" name="fac" id="acNoInput">
+        <h4><p id="nameResult" style="color: red;"></p></h4>
+        <input type="number" placeholder="to ac" name="tac" id="acNoInput1">
+        <h4><p id="nameResult1" style="color: red;"></p></h4>
+        <input type="number" placeholder="amount to transfer" name="amt">
+        <h4><p id="nameResult2" style="color: red;"></p></h4>
+        <input type="submit">
+    </form>
+    <script>
+        const acNoInput = document.getElementById('acNoInput');
+        const nameResult = document.getElementById('nameResult');
+
+        acNoInput.addEventListener('blur', () => {
+            const id = acNoInput.value;
+            // Make a Fetch API request to the backend
+            fetch(`http://127.0.0.1:5000/api/getname?ac=${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.name) {
+                        nameResult.textContent = `FROM A/C: ${data.name}`;
+                    } else {
+                        nameResult.textContent = 'A/C invalid';
+                    }
+                })
+                .catch(error => console.error(error));
+        });
+    </script>
+    <script>
+        const acNoInput1 = document.getElementById('acNoInput1');
+        const nameResult1 = document.getElementById('nameResult1');
+
+        acNoInput1.addEventListener('blur', () => {
+            const id1 = acNoInput1.value;
+            // Make a Fetch API request to the backend
+            fetch(`http://127.0.0.1:5000/api/getname?ac=${id1}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.name) {
+                        nameResult1.textContent = `TO A/C: ${data.name}`;
+                    } else {
+                        nameResult1.textContent = 'A/C invalid';
+                    }
+                })
+                .catch(error => console.error(error));
+        });
+    </script>
+</body>
+</html>
